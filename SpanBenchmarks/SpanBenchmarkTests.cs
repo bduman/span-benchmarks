@@ -1,11 +1,11 @@
-﻿using System;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
+using System;
 
 namespace SpanBenchmarks
 {
     [SimpleJob(launchCount: 3, warmupCount: 10, targetCount: 30)]
     [MemoryDiagnoser]
-    public class ReadOnlySpanBenchmarkTests
+    public class SpanBenchmarkTests
     {
         [Benchmark]
         public string GetValueUsingSubstring()
@@ -28,5 +28,27 @@ namespace SpanBenchmarks
             ? ReadOnlySpan<char>.Empty
             : expression.Slice(lastEqualSignIndex + 1);
         }
+
+        [Benchmark]
+        public void GetArrayUsingSpan()
+        {
+            Span<int> array = stackalloc int[5];
+        }
+
+        [Benchmark]
+        public void GetArray()
+        {
+            int[] array = new int[5];
+        }
+
+        [Benchmark]
+        public void GetSliceOfArrayUsingSpan()
+        {
+            Span<int> span = stackalloc int[5];
+
+            var span2 = span.Slice(start: 1, length: 3);
+        }
+
+        //TODO: Memory<T>
     }
 }
