@@ -33,33 +33,18 @@ namespace SpanBenchmarks
         public void GetArrayUsingSpan()
         {
             Span<int> array = stackalloc int[5];
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                array[i] = i;
-            }
         }
 
         [Benchmark]
         public void GetArray()
         {
             int[] array = new int[5];
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                array[i] = i;
-            }
         }
 
         [Benchmark]
         public void GetSliceOfArrayUsingSpan()
         {
             Span<int> span = stackalloc int[5];
-
-            for (int i = 0; i < span.Length; i++)
-            {
-                span[i] = i;
-            }
 
             var span2 = span.Slice(start: 1, length: 3);
         }
