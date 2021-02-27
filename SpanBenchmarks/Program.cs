@@ -6,7 +6,7 @@ namespace SpanBenchmarks
     {
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run<ReadOnlySpanBenchmarkTests>();
+            var summary = BenchmarkRunner.Run<SpanBenchmarkTests>();
         }
     }
 }
